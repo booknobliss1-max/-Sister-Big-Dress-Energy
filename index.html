@@ -1,156 +1,372 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sista Big Dress — Digital Intent</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<div class="separator" style="clear: both;">
+  <a
+    href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMAGACDI9f6lk4P-3it79O9e8TZuMMogI_q5V4M4k72-awdKYvIU7rgxmFE7o2fAlvkMshGVJWbZIbPDun-fvKfbTrzUhiGoJ8nUv49FCeQyYpPQ2M42MvtQGnIyPJDgehYL_-QdvZt3qdqXS_kmPE5CzrrFEkVsjRYMOWDEXUtWWlLmgEHxzluGP0cMQH/s1536/sistabigdress.png.png"
+    style="display: block; padding: 1em 0; text-align: center; "
+    ><img
+      alt=""
+      border="0"
+      height="320"
+      data-original-height="1536"
+      data-original-width="1024"
+      src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMAGACDI9f6lk4P-3it79O9e8TZuMMogI_q5V4M4k72-awdKYvIU7rgxmFE7o2fAlvkMshGVJWbZIbPDun-fvKfbTrzUhiGoJ8nUv49FCeQyYpPQ2M42MvtQGnIyPJDgehYL_-QdvZt3qdqXS_kmPE5CzrrFEkVsjRYMOWDEXUtWWlLmgEHxzluGP0cMQH/s320/sistabigdress.png.png"
+  /></a>
+</div>
 <style>
-  .tile {
-    cursor: grab;
-    user-select: none;
-  }
-  .board {
-    background: rgba(255,255,255,0.05);
-    min-height: 420px;
+  /* Disable all theme animations */
+  .separator, .separator img, .separator a,
+  img, a, div {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+    backface-visibility: visible !important;
+    perspective: none !important;
   }
 </style>
-</head>
 
-<body class="bg-[#002E45] text-white min-h-screen">
 
-<!-- COVER SECTION -->
+<!-- Visionary Intent Dashboard (Stationary, No Flip) -->
+<div id="visionary-dashboard-root">
+  <style>
+    #visionary-dashboard-root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #1f1633;
+    }
 
-<section class="max-w-4xl mx-auto pt-6 px-4">
-  <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-[#90C53D]">
-    <img src="/mnt/data/sistabigdress.png" alt="Delta Roots Delta Boots " class="w-full object-cover"/>
+    .vd-wrapper {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #f8f4ff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e0d2ff;
+    }
+
+    .vd-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .vd-tagline {
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7b6aa8;
+    }
+
+    .vd-title {
+      font-size: 1.9rem;
+      margin: 0.4rem 0;
+      color: #3b246b;
+      font-weight: 700;
+    }
+
+    .vd-subtitle {
+      font-size: 1rem;
+      color: #5f4a8f;
+    }
+
+    .vd-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .vd-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards (Stationary, No Flip) */
+    .vd-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .vd-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 0.9rem 0.8rem;
+      cursor: pointer;
+      border: 1px solid #e4dafc;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .vd-card:hover {
+      background: #f4edff;
+    }
+
+    .vd-card.active {
+      border-color: #7b4bff;
+      background: #f7f0ff;
+    }
+
+    .vd-card-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8a7ab5;
+      margin-bottom: 0.25rem;
+    }
+
+    .vd-card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3b246b;
+      margin-bottom: 0.2rem;
+    }
+
+    .vd-card-note {
+      font-size: 0.8rem;
+      color: #7b6aa8;
+    }
+
+    /* Detail panel */
+    .vd-detail {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.1rem 1.1rem 1.3rem;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      border: 1px solid #e4dafc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .vd-detail-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9a8fd0;
+    }
+
+    .vd-detail-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #3b246b;
+    }
+
+    .vd-detail-intro {
+      font-size: 0.9rem;
+      color: #5f4a8f;
+    }
+
+    .vd-detail textarea {
+      width: 100%;
+      min-height: 130px;
+      border-radius: 10px;
+      border: 1px solid #d6c7ff;
+      padding: 0.7rem 0.8rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      background: #fbf9ff;
+      color: #2b1b4f;
+    }
+
+    .vd-detail textarea:focus {
+      border-color: #7b4bff;
+      box-shadow: 0 0 0 2px rgba(123,75,255,0.18);
+      background: #ffffff;
+    }
+
+    .vd-detail-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.3rem;
+    }
+
+    .vd-chip {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: #f0e8ff;
+      color: #5a3ea0;
+    }
+
+    .vd-save {
+      margin-left: auto;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #7b4bff, #c86bff);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(123,75,255,0.35);
+    }
+
+    .vd-saved-indicator {
+      font-size: 0.75rem;
+      color: #5f4a8f;
+    }
+  </style>
+
+  <div class="vd-wrapper">
+    <div class="vd-header">
+      <div class="vd-tagline">Visionary Intent Dashboard</div>
+      <div class="vd-title">Sista 'Big Dress Energy' — 2026</div>
+      <div class="vd-subtitle">Choose an axis. Write your intent. Design the path.</div>
+    </div>
+
+    <div class="vd-layout">
+      <!-- Cards -->
+      <div class="vd-card-grid" id="vd-card-grid">
+        <div class="vd-card" data-key="taking-up-space" data-title="Taking Up Space" data-tag="Presence">
+          <div class="vd-card-label">Axis 01</div>
+          <div class="vd-card-title">Taking Up Space</div>
+          <div class="vd-card-note"> Creating and designing full scale.</div>
+        </div>
+
+        <div class="vd-card" data-key="business" data-title="Business Goals" data-tag="Enterprise">
+          <div class="vd-card-label">Axis 02</div>
+          <div class="vd-card-title">Business Goals</div>
+          <div class="vd-card-note">Revenue, offers, collaborations.</div>
+        </div>
+
+        <div class="vd-card" data-key="career" data-title="Career Path" data-tag="Work">
+          <div class="vd-card-label">Axis 03</div>
+          <div class="vd-card-title">Career Path</div>
+          <div class="vd-card-note">Roles, titles, careers you enter.</div>
+        </div>
+
+        <div class="vd-card" data-key="garden" data-title="Garden Roots" data-tag="Earth">
+          <div class="vd-card-label">Axis 04</div>
+          <div class="vd-card-title">Garden Roots Stewardship</div>
+          <div class="vd-card-note">Soil, food, land, tending.</div>
+        </div>
+
+        <div class="vd-card" data-key="health" data-title="Health Push" data-tag="Body">
+          <div class="vd-card-label">Axis 05</div>
+          <div class="vd-card-title">Health Push Glucose</div>
+          <div class="vd-card-note">Energy, rest, movement.</div>
+        </div>
+
+        <div class="vd-card" data-key="family" data-title="Family Legacy" data-tag="Lineage">
+          <div class="vd-card-label">Axis 06</div>
+          <div class="vd-card-title">Family Legacy</div>
+          <div class="vd-card-note">What continues after you. Wills, Power of Attorney, Estate Planning.</div>
+        </div>
+
+        <div class="vd-card" data-key="art" data-title="Art Value" data-tag="Creative">
+          <div class="vd-card-label">Axis 07</div>
+          <div class="vd-card-title">Art Value</div>
+          <div class="vd-card-note">Your own work as an asset.</div>
+        </div>
+
+        <div class="vd-card" data-key="launch" data-title="Launch Plans" data-tag="Momentum">
+          <div class="vd-card-label">Axis 08</div>
+          <div class="vd-card-title">Launch Plans</div>
+          <div class="vd-card-note">Drops, releases, premieres.</div>
+        </div>
+
+        <div class="vd-card" data-key="risk" data-title="Cost + Risk" data-tag="Strategy">
+          <div class="vd-card-label">Axis 09</div>
+          <div class="vd-card-title">Cost + Risk</div>
+          <div class="vd-card-note">What you’re willing to wager.</div>
+        </div>
+
+        <div class="vd-card" data-key="big-dress" data-title="Big Dress Energy" data-tag="Signature">
+          <div class="vd-card-label">Axis 10</div>
+          <div class="vd-card-title">Big Dress Energy</div>
+          <div class="vd-card-note">Your whole field of presence.</div>
+        </div>
+      </div>
+
+      <!-- Detail / writing panel -->
+      <div class="vd-detail">
+        <div class="vd-detail-label">Active Intent</div>
+        <div class="vd-detail-title" id="vd-detail-title">Pick a card to begin</div>
+        <div class="vd-detail-intro" id="vd-detail-intro">
+          Choose one axis. Write what you are calling in, clarifying, or releasing.
+        </div>
+
+        <textarea id="vd-detail-text" placeholder="Write your intent, affirmations, and plans in your journal..."></textarea>
+
+        <div class="vd-detail-footer">
+          <span class="vd-chip" id="vd-detail-tag">Texas Boots</span>
+          <button class="vd-save" id="vd-save-btn">Delta Roots</button>
+          <span class="vd-saved-indicator" id="vd-saved-indicator"></span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="text-center mt-6">
-    <h1 class="text-5xl font-bold text-[#058397]">Sista 'Big Dress' Energy</h1>
-    <p class="text-lg text-gray-300 mt-2">Digital Intent Board</p>
-  </div>
-</section>
 
-<!-- VISION BOARD INTERACTIVE AREA -->
-<section class="max-w-5xl mx-auto mt-10 px-4">
-  <h2 class="text-3xl font-semibold mb-4 text-[#90C53D] text-center">Taking Up Space in 2026</h2>
+  <script>
+    (function() {
+      var cards = document.querySelectorAll('#vd-card-grid .vd-card');
+      var activeKey = null;
 
-  <!-- Editable text area -->
-  <div class="text-center mb-6">
-    <textarea id="notes" placeholder="Write your intentions..." 
-      class="w-full max-w-2xl p-3 rounded-2xl text-black"></textarea>
-  </div>
+      var titleEl = document.getElementById('vd-detail-title');
+      var introEl = document.getElementById('vd-detail-intro');
+      var tagEl = document.getElementById('vd-detail-tag');
+      var textEl = document.getElementById('vd-detail-text');
+      var saveBtn = document.getElementById('vd-save-btn');
+      var savedIndicator = document.getElementById('vd-saved-indicator');
 
-<!-- Interactivity Script -->
-<script>
-  const board = document.getElementById("board");
-  const addBtn = document.getElementById("addItemBtn");
-  const input = document.getElementById("itemInput");
+      function storageKey(key) {
+        return 'vd-intent-' + key;
+      }
 
-  // Add item to board
-  addBtn.addEventListener("click", () => {
-    const text = input.value.trim();
-    if (!text) return;
+      function loadIntent(key) {
+        try {
+          return localStorage.getItem(storageKey(key)) || '';
+        } catch (e) {
+          return '';
+        }
+      }
 
-    const item = document.createElement("div");
-    item.className = 
-      "absolute bg-white px-3 py-2 rounded shadow cursor-move border border-[#058397]";
-    item.textContent = text;
+      function saveIntent(key, value) {
+        try {
+          localStorage.setItem(storageKey(key), value);
+        } catch (e) {}
+      }
 
-    // Random placement
-    item.style.left = Math.random() * 60 + "%";
-    item.style.top = Math.random() * 60 + "%";
+      function clearActive() {
+        cards.forEach(function(card) {
+          card.classList.remove('active');
+        });
+      }
 
-    // Make draggable
-    makeDraggable(item);
+      cards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var key = card.getAttribute('data-key');
+          var title = card.getAttribute('data-title');
+          var tag = card.getAttribute('data-tag');
 
-    board.appendChild(item);
-    input.value = "";
-  });
+          activeKey = key;
+          clearActive();
+          card.classList.add('active');
 
-  // Dragging logic
-  function makeDraggable(el) {
-    let offsetX = 0, offsetY = 0, isDown = false;
+          titleEl.textContent = title;
+          introEl.textContent = 'Speak to “' + title + '” in your own language.';
+          tagEl.textContent = tag + ' axis';
 
-    el.addEventListener("mousedown", (e) => {
-      isDown = true;
-      offsetX = e.clientX - el.offsetLeft;
-      offsetY = e.clientY - el.offsetTop;
-      el.style.zIndex = 1000;
-    });
+          textEl.value = loadIntent(key);
+          savedIndicator.textContent = '';
+        });
+      });
 
-    document.addEventListener("mouseup", () => {
-      isDown = false;
-      el.style.zIndex = 1;
-    });
-
-    document.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      el.style.left = e.clientX - offsetX + "px";
-      el.style.top = e.clientY - offsetY + "px";
-    });
-  }
-</script>
-
-
-
-  <!-- Tiles -->
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-6" id="tiles">
-    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Business Goals</div>
-    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Career Path</div>
-    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Garden Roots</div>
-    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Bold Presence</div>
-    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Family Legacy</div>
-    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Launch Plans</div>
-    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Cost + Risk</div>
-    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Art Value</div>
-    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Health Push</div>
-    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Big Dress Energy</div>
-    
-  </div>
-</section>
-
-<!-- SCRIPT FOR EXTENDED INTERACTIVENESS -->
-<script>
-const board = document.getElementById("board");
-const tiles = document.querySelectorAll(".tile");
-
-tiles.forEach(tile => {
-  tile.addEventListener("dragend", () => tile.style.cursor = "grab");
-  tile.addEventListener("dragstart", (e) => {
-    tile.style.cursor = "grabbing";
-    e.dataTransfer.setData("text/plain", tile.textContent);
-  });
-});
-
-// Allow dropping on board
-board.addEventListener("dragover", (e) => e.preventDefault());
-
-board.addEventListener("drop", (e) => {
-  e.preventDefault();
-  const text = e.dataTransfer.getData("text/plain");
-  createTile(text, e.clientX, e.clientY);
-});
-
-function createTile(text, x, y) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  div.className = "tile absolute bg-[#058397] px-4 py-2 rounded-2xl shadow-lg text-sm";
-  div.style.left = (x - 40) + "px";
-  div.style.top = (y - 40) + "px";
-  div.draggable = true;
-  div.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/plain", text));
-  board.appendChild(div);
-}
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
+      saveBtn.addEventListener('click', function() {
+        if (!activeKey) {
+          savedIndicator.textContent = 'Select a card first.';
+          return;
+        }
+        saveIntent(activeKey, textEl.value || '');
+        savedIndicator.textContent = 'Saved.';
+        setTimeout(function() {
+          savedIndicator.textContent = '';
+        }, 2500);
+      });
+    })();
+  </script>
+</div>
+<!-- End Visionary Intent Dashboard -->
