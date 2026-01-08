@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sista Big Dress — Digital Intent</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .tile {
+    cursor: grab;
+    user-select: none;
+  }
+  .board {
+    background: rgba(255,255,255,0.05);
+    min-height: 420px;
+  }
+</style>
+</head>
+
+<body class="bg-[#002E45] text-white min-h-screen">
+
+<!-- COVER SECTION -->
+
+<section class="max-w-4xl mx-auto pt-6 px-4">
+  <div class="rounded-2xl overflow-hidden shadow-2xl border-4 border-[#90C53D]">
+    <img src="/mnt/data/sistabigdress.png" alt="Delta Trace" class="w-full object-cover"/>
+  </div>
+  <div class="text-center mt-6">
+    <h1 class="text-5xl font-bold text-[#058397]">Sista 'Big Dress' Energy</h1>
+    <p class="text-lg text-gray-300 mt-2">Digital Intent Board</p>
+  </div>
+</section>
+
+<!-- VISION BOARD INTERACTIVE AREA -->
+<section class="max-w-5xl mx-auto mt-10 px-4">
+  <h2 class="text-3xl font-semibold mb-4 text-[#90C53D] text-center">Taking Up Space in 2026</h2>
+
+  <!-- Editable text area -->
+  <div class="text-center mb-6">
+    <textarea id="notes" placeholder="Write your intentions..." 
+      class="w-full max-w-2xl p-3 rounded-2xl text-black"></textarea>
+  </div>
+
+<!-- Interactivity Script -->
+<script>
+  const board = document.getElementById("board");
+  const addBtn = document.getElementById("addItemBtn");
+  const input = document.getElementById("itemInput");
+
+  // Add item to board
+  addBtn.addEventListener("click", () => {
+    const text = input.value.trim();
+    if (!text) return;
+
+    const item = document.createElement("div");
+    item.className = 
+      "absolute bg-white px-3 py-2 rounded shadow cursor-move border border-[#058397]";
+    item.textContent = text;
+
+    // Random placement
+    item.style.left = Math.random() * 60 + "%";
+    item.style.top = Math.random() * 60 + "%";
+
+    // Make draggable
+    makeDraggable(item);
+
+    board.appendChild(item);
+    input.value = "";
+  });
+
+  // Dragging logic
+  function makeDraggable(el) {
+    let offsetX = 0, offsetY = 0, isDown = false;
+
+    el.addEventListener("mousedown", (e) => {
+      isDown = true;
+      offsetX = e.clientX - el.offsetLeft;
+      offsetY = e.clientY - el.offsetTop;
+      el.style.zIndex = 1000;
+    });
+
+    document.addEventListener("mouseup", () => {
+      isDown = false;
+      el.style.zIndex = 1;
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      el.style.left = e.clientX - offsetX + "px";
+      el.style.top = e.clientY - offsetY + "px";
+    });
+  }
+</script>
+
+
+
+  <!-- Tiles -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-6" id="tiles">
+    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Business Goals</div>
+    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Career Path</div>
+    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Garden Roots</div>
+    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Bold Presence</div>
+    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Family Legacy</div>
+    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Launch Plans</div>
+    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Cost + Risk</div>
+    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Art Value</div>
+    <div class="tile bg-[#058397] p-3 rounded-2xl text-center" draggable="true">Health Push</div>
+    <div class="tile bg-[#90C53D] p-3 rounded-2xl text-center" draggable="true">Big Dress Energy</div>
+  </div>
+</section>
+
+<!-- SCRIPT FOR EXTENDED INTERACTIVENESS -->
+<script>
+const board = document.getElementById("board");
+const tiles = document.querySelectorAll(".tile");
+
+tiles.forEach(tile => {
+  tile.addEventListener("dragend", () => tile.style.cursor = "grab");
+  tile.addEventListener("dragstart", (e) => {
+    tile.style.cursor = "grabbing";
+    e.dataTransfer.setData("text/plain", tile.textContent);
+  });
+});
+
+// Allow dropping on board
+board.addEventListener("dragover", (e) => e.preventDefault());
+
+board.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const text = e.dataTransfer.getData("text/plain");
+  createTile(text, e.clientX, e.clientY);
+});
+
+function createTile(text, x, y) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  div.className = "tile absolute bg-[#058397] px-4 py-2 rounded-2xl shadow-lg text-sm";
+  div.style.left = (x - 40) + "px";
+  div.style.top = (y - 40) + "px";
+  div.draggable = true;
+  div.addEventListener("dragstart", (e) => e.dataTransfer.setData("text/plain", text));
+  board.appendChild(div);
+}
+</script>
+
+</body>
+</html>
