@@ -386,6 +386,154 @@ document.getElementById("vd-reflect-btn").addEventListener("click", function () 
 </div>
 <!-- End Visionary Intent Dashboard -->
 
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sista Big Dress — Guided Vision Board</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .tile {
+    cursor: grab;
+    user-select: none;
+    position: absolute;
+  }
+
+  .board {
+    background: rgba(255,255,255,0.1);
+    min-height: 480px;
+    position: relative;
+    border: 2px dashed #90C53D;
+  }
+</style>
+</head>
+
+<body class="bg-[#002E45] text-white font-sans">
+
+<!-- Header -->
+<header class="text-center p-6">
+  <h1 class="text-4xl md:text-6xl font-bold text-[#90C53D]">Sista Big Dress Vision Journey</h1>
+  <p class="mt-2 text-lg text-gray-300">Step-by-step guided vision board experience</p>
+</header>
+
+<!-- Cover Image -->
+<section class="max-w-3xl mx-auto mb-8">
+  <img src="/mnt/data/sistabigdress.png" alt="Sista Big Dress Cover" class="rounded-2xl w-full shadow-2xl border-4 border-[#058397]"/>
+</section>
+
+<!-- Guided Prompts -->
+<section class="max-w-4xl mx-auto space-y-8 px-4">
+
+  <!-- Step 1 -->
+  <div>
+    <h2 class="text-2xl font-semibold text-[#90C53D]">1. Your Core Identity</h2>
+    <p class="text-gray-300 mt-1">Write a sentence describing who you *truly are* right now.</p>
+    <textarea id="identityInput" class="w-full text-black p-3 rounded-2xl mt-2" placeholder="I am..."></textarea>
+  </div>
+
+  <!-- Step 2 -->
+  <div>
+    <h2 class="text-2xl font-semibold text-[#90C53D]">2. Your Biggest Vision Goal</h2>
+    <p class="text-gray-300 mt-1">What’s one big aim you want to manifest this year?</p>
+    <input type="text" id="goalInput" class="w-full text-black p-3 rounded-2xl mt-2" placeholder="Describe your goal..." />
+  </div>
+
+  <!-- Step 3 -->
+  <div>
+    <h2 class="text-2xl font-semibold text-[#90C53D]">3. Feelings that Fuel You</h2>
+    <p class="text-gray-300 mt-1">Write three emotions that energize your vision.</p>
+    <input type="text" id="feeling1" class="w-full text-black p-3 rounded-2xl mt-2" placeholder="1"/>
+    <input type="text" id="feeling2" class="w-full text-black p-3 rounded-2xl mt-2" placeholder="2"/>
+    <input type="text" id="feeling3" class="w-full text-black p-3 rounded-2xl mt-2" placeholder="3"/>
+  </div>
+
+  <!-- Step 4 -->
+  <div>
+    <h2 class="text-2xl font-semibold text-[#90C53D]">4. Vision Board Tiles</h2>
+    <p class="text-gray-300 mt-1">Drag these tiles to your board to represent your intentions.</p>
+
+    <div id="tiles" class="grid grid-cols-2 md:grid-cols-4 gap-3 px-2 pt-3">
+      <div class="tile bg-[#058397] px-4 py-3 rounded-2xl text-center" draggable="true">Identity</div>
+      <div class="tile bg-[#90C53D] px-4 py-3 rounded-2xl text-center" draggable="true">Goal</div>
+      <div class="tile bg-[#058397] px-4 py-3 rounded-2xl text-center" draggable="true">Feelings</div>
+      <div class="tile bg-[#90C53D] px-4 py-3 rounded-2xl text-center" draggable="true">Affirmation</div>
+      <div class="tile bg-[#058397] px-4 py-3 rounded-2xl text-center" draggable="true">Legacy</div>
+      <div class="tile bg-[#90C53D] px-4 py-3 rounded-2xl text-center" draggable="true">Action Step</div>
+    </div>
+  </div>
+
+  <!-- Vision Board Area -->
+  <div>
+    <h2 class="text-2xl font-semibold text-[#90C53D] text-center">Your Vision Board</h2>
+    <div id="board" class="board mt-4 rounded-xl p-4"></div>
+  </div>
+
+  <!-- Save / Export -->
+  <div class="text-center">
+    <button id="saveBtn" class="bg-[#90C53D] px-6 py-3 rounded-2xl font-semibold text-black">Save Vision to Local</button>
+    <button id="exportBtn" class="bg-[#058397] px-6 py-3 rounded-2xl font-semibold ml-4">Download Board</button>
+  </div>
+
+</section>
+
+<script>
+/* --- DRAG AND DROP TILES --- */
+const board = document.getElementById("board");
+const tiles = document.querySelectorAll(".tile");
+
+tiles.forEach((tile) => {
+  tile.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", tile.textContent);
+  });
+});
+
+// Allow drop
+board.addEventListener("dragover", (e) => e.preventDefault());
+board.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const text = e.dataTransfer.getData("text/plain");
+  const newTile = document.createElement("div");
+  newTile.textContent = text;
+  newTile.className = "tile bg-[#058397] px-4 py-2 rounded-2xl shadow text-sm";
+  newTile.style.left = (e.offsetX - 40) + "px";
+  newTile.style.top = (e.offsetY - 20) + "px";
+  newTile.draggable = true;
+  board.appendChild(newTile);
+});
+
+/* --- SAVE TO LOCAL STORAGE --- */
+document.getElementById("saveBtn").onclick = () => {
+  const identity = document.getElementById("identityInput").value;
+  const bigGoal = document.getElementById("goalInput").value;
+  const emotion1 = document.getElementById("feeling1").value;
+  const emotion2 = document.getElementById("feeling2").value;
+  const emotion3 = document.getElementById("feeling3").value;
+
+  localStorage.setItem("visionIdentity", identity);
+  localStorage.setItem("visionGoal", bigGoal);
+  localStorage.setItem("visionFeelings", JSON.stringify([emotion1,emotion2,emotion3]));
+
+  alert("Vision text saved locally!");
+};
+
+/* --- DOWNLOAD BOARD IMAGE --- */
+document.getElementById("exportBtn").addEventListener("click", () => {
+  html2canvas(board).then(canvas => {
+    const link = document.createElement("a");
+    link.download = "vision-board.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+});
+
+/* --- LOAD html2canvas LIBRARY --- */
+const script = document.createElement("script");
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js";
+document.body.appendChild(script);
+</script>
+
+</body>
+</html>
+
+
+
 
 
 
