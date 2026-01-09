@@ -294,6 +294,8 @@
 
         <div class="vd-detail-footer">
           <span class="vd-chip" id="vd-detail-tag">Texas Boots</span>
+          <button id="vd-reflect-btn">Reflect With Me</button>
+
           <span class="vd-chip" id="vd-detail-tag">Delta Roots</span>
           <span class="vd-saved-indicator" id="vd-saved-indicator"></span>
         </div>
@@ -312,6 +314,18 @@
       var textEl = document.getElementById('vd-detail-text');
       var saveBtn = document.getElementById('vd-save-btn');
       var savedIndicator = document.getElementById('vd-saved-indicator');
+      const reflections = [
+  "What would this look like if you trusted yourself fully?",
+  "What is the deeper desire underneath this intention?",
+  "What support do you need to honor this?",
+  "What does your future self want you to know?",
+  "What would this feel like in your body?"
+];
+document.getElementById("vd-reflect-btn").addEventListener("click", function () {
+  const r = reflections[Math.floor(Math.random() * reflections.length)];
+  textEl.value += "\n\n" + "🟣 " + r + "\n";
+});
+
 
       function storageKey(key) {
         return 'vd-intent-' + key;
@@ -371,6 +385,7 @@
   </script>
 </div>
 <!-- End Visionary Intent Dashboard -->
+
 
 
 
